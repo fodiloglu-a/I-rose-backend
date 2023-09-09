@@ -247,6 +247,24 @@ public class CurrencyServiceImp implements CurrencyService {
         return responseModel;
     }
 
+    @Override
+    public ResponseModel getCurrencyPage() {
+        ResponseModel responseModel=new ResponseModel();
+        try {
+
+            LocalDate date=LocalDate.of(2023,9,01);
+            List<CurrencyModel> currencyModelByDatum = repository.getCurrencyByOznakaUniq(date);
+             currencyModelByDatum.forEach( model -> {
+                 responseModel.getCurrencyDTOs().add(populator.modelToDto(model));
+                     });
+             return responseModel;
+
+        }catch (BusinessException businessException){
+
+        }
+        return responseModel;
+    }
+
 
     public double percentageChange(BigDecimal firstExchangeRate,BigDecimal lastExchangeRate){
         BigDecimal percentageChange =new BigDecimal(0);
