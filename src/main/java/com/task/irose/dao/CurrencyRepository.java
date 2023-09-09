@@ -50,4 +50,7 @@ WHERE c.model_oznaka = 'USD'
     Map<String, Object> getTotalPriceAndModelCount(@Param("oznaka") String oznaka, @Param("datumStart") LocalDate datumStart, @Param("datumEnd") LocalDate datumEnd);
 
 
+    @Query("SELECT c    FROM CurrencyModel as c  WHERE  c.datum >:date  group by c.sifra  ")
+
+    List<CurrencyModel> getCurrencyByOznakaUniq(@Param("date") LocalDate date);
 }

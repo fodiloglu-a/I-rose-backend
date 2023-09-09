@@ -26,4 +26,6 @@ public interface CurrencyService {
     boolean rateCalculateForAllTime(List<CurrencyDTO> list,LocalDate date);
 
     ResponseModel getGraph(String oznaka);
+
+    ResponseModel getCurrencyPage();
 }
