@@ -24,8 +24,8 @@ public class CalculateController {
 
     public ResponseEntity compare(@RequestBody ResponseModel calculateRequestModel)throws ResponseException{
         try {
-           double percentage= calculateService.compare(calculateRequestModel);
-           return ResponseEntity.status(HttpStatus.OK).body(percentage);
+         //  double percentage= calculateService.compare(calculateRequestModel);
+           return ResponseEntity.status(HttpStatus.OK).body("percentage");
         }catch (ResponseException exception){
             throw new ResponseException("to compare get exception ", HttpStatus.BAD_GATEWAY);
         }

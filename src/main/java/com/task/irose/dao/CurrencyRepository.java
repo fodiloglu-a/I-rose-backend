@@ -53,4 +53,7 @@ WHERE c.model_oznaka = 'USD'
     @Query("SELECT c    FROM CurrencyModel as c  WHERE  c.datum >:date  group by c.sifra  ")
 
     List<CurrencyModel> getCurrencyByOznakaUniq(@Param("date") LocalDate date);
+
+    @Query("SELECT c FROM CurrencyModel  as c WHERE  c.datum>:end and  c.datum <:start and c.oznaka=:oznaka order by c.datum")
+    List<CurrencyModel> getCurrencyForCompare(LocalDate start, LocalDate end, String oznaka);
 }

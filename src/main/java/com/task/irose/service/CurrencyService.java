@@ -4,9 +4,7 @@ package com.task.irose.service;
 
 import com.task.irose.facet.ResponseModel;
 import com.task.irose.facet.dto.CurrencyDTO;
-import com.task.irose.model.CurrencyModel;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
