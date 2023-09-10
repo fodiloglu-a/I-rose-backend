@@ -2,7 +2,7 @@ package com.task.irose.service.pullData;
 
 import com.task.irose.dao.CurrencyRepository;
 import com.task.irose.model.CurrencyModel;
-import com.task.irose.model.currencys.ItemModel;
+
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -19,9 +19,10 @@ import java.io.StringReader;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
-import java.util.Date;
+
 import java.util.List;
 
 @Component
@@ -32,8 +33,13 @@ public class ParseXMLService {
         this.currencyRepository = currencyRepository;
     }
 
-    public   List<ItemModel> parseXML(String xmlData) {
-        List<ItemModel> currencyList = new ArrayList<>();
+    /**
+     * NOTE SAVE TO DB
+     * @param xmlData
+     * @return
+     */
+    public   List<CurrencyModel> parseXML(String xmlData) {
+        List<CurrencyModel> currencyList = new ArrayList<>();
 
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -59,7 +65,7 @@ public class ParseXMLService {
                         String sifra = currencyElement.getAttribute("sifra");
                         String exchangeRate = currencyElement.getTextContent();
 
-                        ItemModel itemModel=selectModel(currencyCode);
+                        CurrencyModel itemModel=selectModel(currencyCode);
                         itemModel.setDatum(convertStringToDate(date));
                         BigDecimal rate=new BigDecimal(exchangeRate);
                         itemModel.setExchangeRate(rate);
@@ -91,6 +97,10 @@ public class ParseXMLService {
 
     }
 
+    /**
+     * SAVE TO DB
+     * @param xmlData
+     */
     public   void db(String xmlData) {
 
 
@@ -119,7 +129,7 @@ public class ParseXMLService {
                         String exchangeRate = currencyElement.getTextContent();
 
                         CurrencyModel currencyModel=new CurrencyModel();
-                        //currencyModel.setDatum(convertStringToDate(date));
+                        currencyModel.setDatum(LocalDate.parse(date));
                         currencyModel.setOznaka(currencyCode);
                         currencyModel.setSifra(sifra);
                         currencyModel.setExchangeRate(new BigDecimal(exchangeRate));
@@ -141,16 +151,16 @@ public class ParseXMLService {
         }
 
     }
-    public ItemModel selectModel(String className) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public CurrencyModel selectModel(String className) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         String pck="com.task.irose.model.currencys."+className;
         Class<?> cls=Class.forName(pck);
-        ItemModel o = (ItemModel) cls.newInstance();
+        CurrencyModel o = (CurrencyModel) cls.newInstance();
         return o;
     }
 
-    public   Date  convertStringToDate(String dateString) throws ParseException {
+    public LocalDate convertStringToDate(String dateString) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return dateFormat.parse(dateString);
+        return LocalDate.parse((CharSequence) dateFormat);
     }
 
 

@@ -29,25 +29,6 @@ public class CurrencyServiceImp implements CurrencyService {
         this.graphService = graphService;
     }
 
-
-    @Override
-    public List<CurrencyDTO> getAllCurrency() {
-        try {
-            List<CurrencyDTO> dtos=new ArrayList<>();
-            List<CurrencyModel> models = repository.findAll();
-            models.forEach(
-                    model->
-                            dtos.add(populator.modelToDto(model))
-            );
-            return dtos;
-
-        }catch (BusinessException e){
-            throw new BusinessException("getAllCurrency exception to service", HttpStatus.BAD_REQUEST);
-
-        }
-
-    }
-
     @Override
     public  List<CurrencyDTO>  getByDatum(LocalDate datum) {
         try {
@@ -74,24 +55,6 @@ public class CurrencyServiceImp implements CurrencyService {
     }
 
     @Override
-    public CurrencyDTO getByOznaka(String oznaka) {
-        try {
-
-            CurrencyDTO currencyDTO =new CurrencyDTO();
-
-            CurrencyModel model =  repository.findByOznaka(oznaka);
-            return populator.modelToDto(model);
-
-        } catch (BusinessException e) {
-            throw new BusinessException("findByOznaka exception to service", HttpStatus.BAD_REQUEST);
-
-        }
-    }
-//max date 2023.09.07
-
-
-
-    @Override
     public List<CurrencyDTO> rateCalculateForDay(List<CurrencyDTO> firsModels, LocalDate date) {
         try {
             LocalDate lastDate=date.minusDays(1);
@@ -114,7 +77,6 @@ public class CurrencyServiceImp implements CurrencyService {
     }
 
 
-
     @Override
     public boolean rateCalculateForWeek(List<CurrencyDTO> list, LocalDate date) {
         try {
@@ -135,9 +97,6 @@ public class CurrencyServiceImp implements CurrencyService {
         }
         return false;
     }
-
-
-
 
     @Override
     public boolean rateCalculateForMonth(List<CurrencyDTO> list, LocalDate date) {

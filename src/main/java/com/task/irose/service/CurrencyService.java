@@ -10,12 +10,7 @@ import java.util.List;
 
 
 public interface CurrencyService {
-    List<CurrencyDTO> getAllCurrency();
-
     List<CurrencyDTO> getByDatum(LocalDate datum);
-
-    CurrencyDTO getByOznaka(String oznaka);
-
     List<CurrencyDTO> rateCalculateForDay(List<CurrencyDTO> list,LocalDate date);
     boolean rateCalculateForWeek(List<CurrencyDTO> list,LocalDate date);
     boolean rateCalculateForMonth(List<CurrencyDTO> list,LocalDate date);
