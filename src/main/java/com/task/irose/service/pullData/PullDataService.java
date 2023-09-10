@@ -1,10 +1,11 @@
 package com.task.irose.service.pullData;
 
-import com.task.irose.model.currencys.ItemModel;
+
+import com.task.irose.model.CurrencyModel;
 import org.springframework.stereotype.Component;
 
-import java.util.Currency;
 import java.util.List;
+
 
 @Component
 public class PullDataService {
@@ -18,25 +19,18 @@ public class PullDataService {
     }
 
 
+    public List<CurrencyModel> pullData() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
-    public List<ItemModel> pullData() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+        String url = "https://www.bsi.si/_data/tecajnice/dtecbs-l.xml"; // XML sorce urllll
 
-            String url = "https://www.bsi.si/_data/tecajnice/dtecbs-l.xml"; // XML veri kaynağı URL'si
+        String xmlData = downloadDataServices.downloadData(url); // XML downloadddddddd
 
-        String xmlData = downloadDataServices.downloadData(url); // XML verilerini indirme
-
-        //List<ItemModel> currencys = parseXMLService.parseXML(xmlData); // XML verilerini analiz etme
-          parseXMLService.db(xmlData); // XML verilerini analiz etme
-
+        parseXMLService.db(xmlData); // XML Analizzzzzz
 
         return null;
 
 
-
-
     }
-
-
 
 
 }

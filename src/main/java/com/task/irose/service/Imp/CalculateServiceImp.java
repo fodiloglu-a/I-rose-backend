@@ -26,14 +26,7 @@ public class CalculateServiceImp implements CalculateService {
         this.repository = repository;
     }
 
-    /*
-   in this method
-   * can do betweean to two currencys(day/weak/month/year/5years/alltime) to compare
-   * and do graph for models
 
-   localDate.now=2023.09.07
-
-    */
     @Override
     public ResponseModel compare(ResponseModel calculateRequestModel) {
         ResponseModel responseModel=new ResponseModel();
