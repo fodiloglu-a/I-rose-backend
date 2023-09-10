@@ -3,13 +3,14 @@ package com.task.irose.facet;
 import com.task.irose.facet.dto.CurrencyDTO;
 import com.task.irose.model.CurrencyModel;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class ResponseModel {
     private String oznakaFirs;
     private String oznakaSecont;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private CurrencyDTO currencyDTO;
     private List<CurrencyDTO> currencyDTOs=new ArrayList<>();
     private HashMap<Integer,Double>  weekGraph=new HashMap<>();
@@ -18,8 +19,17 @@ public class ResponseModel {
     private HashMap<Integer,Double>  fiveYearGraph=new HashMap<>();
     private HashMap<Integer,Double>  allTimeGraph=new HashMap<>();
 
+    private Map<String,Double> profitAndLose=new HashMap<>();
 
     public ResponseModel() {
+    }
+
+    public Map<String, Double> getProfitAndLose() {
+        return profitAndLose;
+    }
+
+    public void setProfitAndLose(Map<String, Double> profitAndLose) {
+        this.profitAndLose = profitAndLose;
     }
 
     public HashMap<Integer, Double> getWeekGraph() {
@@ -70,7 +80,7 @@ public class ResponseModel {
         this.currencyDTOs = currencyDTOs;
     }
 
-    public ResponseModel(String oznakaFirs, String oznakaSecont, Date startDate, Date endDate, CurrencyDTO currencyDTO) {
+    public ResponseModel(String oznakaFirs, String oznakaSecont, LocalDate startDate, LocalDate endDate, CurrencyDTO currencyDTO) {
         this.oznakaFirs = oznakaFirs;
         this.oznakaSecont = oznakaSecont;
         this.startDate = startDate;
@@ -94,19 +104,19 @@ public class ResponseModel {
         this.oznakaSecont = oznakaSecont;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
