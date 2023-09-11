@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ public class GraphServiceImp implements GraphService {
 
 
     private final CurrencyRepository currencyRepository;
+
 
     public GraphServiceImp(CurrencyRepository currencyRepository) {
         this.currencyRepository = currencyRepository;
@@ -137,6 +139,7 @@ public class GraphServiceImp implements GraphService {
         }
         return graphValue;
     }
+
 
 
     public void  putHash(Map<String, Object> objectMap ,int count,HashMap<Integer,Double> graphValue){

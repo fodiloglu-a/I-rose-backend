@@ -1,7 +1,6 @@
 package com.task.irose.facet;
 
 import com.task.irose.facet.dto.CurrencyDTO;
-import com.task.irose.model.CurrencyModel;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -20,8 +19,26 @@ public class ResponseModel {
     private HashMap<Integer,Double>  allTimeGraph=new HashMap<>();
 
     private Map<String,Double> profitAndLose=new HashMap<>();
+    private HashMap<Integer,Double> firstGraph=new HashMap<>();
+    private HashMap<Integer,Double>secondGraph=new HashMap<>();
 
     public ResponseModel() {
+    }
+
+    public HashMap<Integer, Double> getSecondGraph() {
+        return secondGraph;
+    }
+
+    public void setSecondGraph(HashMap<Integer, Double> secondGraph) {
+        this.secondGraph = secondGraph;
+    }
+
+    public HashMap<Integer, Double> getFirstGraph() {
+        return firstGraph;
+    }
+
+    public void setFirstGraph(HashMap<Integer, Double> firstGraph) {
+        this.firstGraph = firstGraph;
     }
 
     public Map<String, Double> getProfitAndLose() {
