@@ -28,7 +28,7 @@ public class GraphPageController {
              * maxDate="2023.09.07";
              */
 
-            responseModel= currencyService.getGraph(oznaka);
+            responseModel= currencyService.getGraph(oznaka.toUpperCase());
 
             return ResponseEntity.status(HttpStatus.OK).body(responseModel);
         }catch (ResponseException exception){
